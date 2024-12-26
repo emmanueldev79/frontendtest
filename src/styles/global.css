@@ -1,0 +1,680 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f8fa;
+  color: #333;
+}
+
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #e1e4e8;
+}
+
+.Header ul {
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.Header li {
+  list-style: none;
+  margin-left: 30px;
+}
+
+.Header .logo {
+  font-size: 28px;
+  font-weight: 600;
+  color: #28a745;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.Header .buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.Header .buttons button {
+  background-color: #28a745;
+  border: none;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 30px;
+  font-weight: 500;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Header .buttons button:hover {
+  background-color: #218838;
+}
+
+.Home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  text-align: center;
+  padding: 40px;
+}
+
+.Home h1 {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #333;
+  text-transform: uppercase;
+}
+
+.Home .search {
+  display: flex;
+  gap: 20px;
+  width: 40%;
+  max-width: 500px;
+}
+
+.Home input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  outline: none;
+  border: 1px solid #ddd;
+  border-radius: 30px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease;
+}
+
+.Home input:focus {
+  border-color: #28a745;
+}
+
+.Home .button-search {
+  padding: 12px 24px;
+  background-color: #28a745;
+  border: none;
+  border-radius: 30px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Home .button-search:hover {
+  background-color: #218838;
+}
+
+.container-products {
+  padding: 40px 60px;
+  background-color: #f9f9f9;
+}
+
+.container-products header {
+  background-color: #28a745;
+  padding: 16px;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.container-products .grid-products {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.container-products .grid-products article {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.container-products .grid-products article:hover {
+  transform: translateY(-5px);
+}
+
+.container-products .product {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.container-products .product .price {
+  margin: 10px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #28a745;
+}
+
+.container-products .product .btn-payment {
+  padding: 10px 18px;
+  background-color: #28a745;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.container-products .product .btn-payment:hover {
+  background-color: #218838;
+}
+
+/* Modal overlay (background) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+
+/* Modal container */
+.modal {
+  background: white;
+  border-radius: 10px;
+  padding: 30px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-50px);
+  opacity: 0;
+  animation: slideIn 0.3s forwards;
+}
+
+/* Modal title */
+.modal-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* Button close */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 28px;
+  background: transparent;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+  color: #333;
+}
+
+/* Summary item (label and value) */
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.total {
+  background-color: #21883743;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 8px;
+  font-weight: bold;
+}
+
+.summary-label {
+  color: #666;
+}
+
+.summary-value {
+  color: #333;
+  font-weight: 600;
+}
+
+
+
+/* Total value */
+.total-value {
+  color: #e74c3c;
+}
+
+/* Submit button */
+.btn-submit {
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+  background-color: #2ecc71;
+}
+
+/* Animation for modal entry */
+@keyframes slideIn {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .modal {
+    padding: 20px;
+  }
+
+  .modal-title {
+    font-size: 20px;
+  }
+
+  .summary-item {
+    font-size: 14px;
+  }
+
+  .btn-submit {
+    font-size: 16px;
+  }
+}
+
+/* Título del modal */
+h3 {
+  text-align: center;
+  font-size: 26px;
+  color: #333;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+/* Estilo para los campos de entrada */
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  font-family: 'Arial', sans-serif;
+}
+
+input[type="text"]:focus {
+  border-color: #218838;
+  /* Color azul moderno */
+  box-shadow: 0 0 8px rgba(52, 152, 219, 0.6);
+  outline: none;
+}
+
+input[type="text"]:hover {
+  border-color: #218838;
+  /* Color azul en hover */
+}
+
+.content-card input::placeholder {
+  color: rgb(168, 168, 168);
+  /* Color por defecto */
+}
+
+.content-card.visa input::placeholder {
+  color: rgb(168, 168, 168);
+  /* Placeholder para VISA */
+}
+
+.content-card.mastercard input::placeholder {
+  color: rgb(168, 168, 168);
+  /* Placeholder para MasterCard */
+}
+
+.content-card {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.095);
+  border-radius: 12px;
+  position: relative;
+  min-height: 230px;
+  padding: 14px;
+  width: 420px;
+  margin-bottom: 12px;
+  /* margin: 0 auto; */
+
+  & .title-card {
+    color: white;
+  }
+
+  & .chip {
+    width: 72px;
+    position: absolute;
+    bottom: 116px;
+    left: 18px;
+  }
+
+  & .expiryDate {
+    display: flex;
+    gap: 2px;
+    position: absolute;
+    bottom: 18px;
+    left: 220px;
+
+    & .label-expiryDate {
+      position: relative;
+    }
+
+    & input {
+      width: 72px;
+    }
+
+    & small {
+      margin: 0;
+      padding: 0;
+      line-height: 1;
+      font-size: 10px;
+      font-weight: bold;
+    }
+
+    & .smallDos {
+      position: absolute;
+    }
+
+
+  }
+
+  /* Logotipo de la tarjeta */
+  .card-type {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+  }
+}
+
+.card-number-inputs {
+  /* justify-content: space-between; */
+  width: fit-content;
+  position: absolute;
+  bottom: 62px;
+  left: 28px;
+}
+
+.card-number-inputs input {
+  width: 21%;
+  font-size: 18px;
+  text-align: center;
+  padding: 12px;
+  font-size: 22px;
+  background-color: #f4f6f7;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.card-number-inputs input:focus {
+  background-color: #ffffff;
+}
+
+
+
+.card-type img {
+  max-width: 50px;
+  max-height: 50px;
+  margin-top: 10px;
+}
+
+/* Estilos para las etiquetas y textos */
+label {
+  font-weight: 500;
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* Estilos para el botón de envío */
+.btn-submit {
+  padding: 8px 12px;
+  background-color: #28a745;
+  /* Azul moderno */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+  display: block;
+  margin: 32px auto 0 auto;
+}
+
+.btn-submit:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+  /* Efecto de elevación */
+}
+
+.btn-submit:active {
+  transform: translateY(1px);
+  /* Suaviza la acción al hacer clic */
+}
+
+/* Animación de fondo y sombras */
+.modal-overlay {
+  animation: fadeInOverlay 0.4s ease-out;
+}
+
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.cancel-confirmation-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cancel-confirmation {
+  background: rgba(0, 128, 0, 0.097);
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.cancel-confirmation button {
+  margin: 10px;
+}
+
+.btn-yes,
+.btn-no {
+  border: none;
+  background-color: #28a745;
+  color: white;
+  padding: 4px 18px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+@media screen and (max-width:900px) {
+  .container-products .grid-products {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width:800px) {
+  .container-products .grid-products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .buttons {
+    display: none !important;
+  }
+
+  .search {
+    flex-direction: column;
+    width: 90% !important;
+  }
+}
+
+@media screen and (max-width:500px) {
+  .container-products .grid-products {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .content-card {
+    width: 100%;
+    margin-top: 32px;
+  }
+
+  .card-number-inputs input {
+    font-size: 16px;
+  }
+}
+
+.deliveryContent {
+  display: flex;
+  flex-direction: column;
+
+  & .deliveryContent h1 {
+    text-align: left;
+  }
+
+  & .carretera {
+    width: 100%;
+    height: 38px;
+    background-color: #333;
+    position: relative;
+    bottom: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+
+    & .car {
+      width: 120px;
+      position: absolute;
+      bottom: -20px;
+      left: 20px;
+    }
+
+    .line {
+      position: absolute;
+      height: 44px;
+      width: 2px;
+      background-color: rgb(75, 75, 75);
+      bottom: 38px;
+      right: 24px;
+    }
+
+    .circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 100%;
+      background-color: red;
+      position: absolute;
+      border: 1px solid white;
+      bottom: 72px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 8px;
+      z-index: 10;
+      color: white;
+      right: 8px;
+      font-weight: bold;
+    }
+
+    & .lineYellow {
+      width: 60px;
+      height: 4px;
+      background-color: yellow;
+    }
+  }
+
+
+}
+
+.deliveryImg {
+  width: 100px;
+  animation: moveCart 2s forwards;
+  /* Aumentamos el tiempo para hacerlo más lento */
+}
+
+/* Definimos la animación "moveCart" */
+@keyframes moveCart {
+  0% {
+    transform: translateX(0);
+    /* Posición inicial */
+  }
+
+  100% {
+    transform: translateX(400px);
+    /* Aumentamos el desplazamiento a 800px hacia la derecha */
+  }
+}
+
+.infoDelivery {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  & h1 {
+    margin-bottom: 10px;
+
+  }
+}
