@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-import ImageChip from "../images/chip.png";
-import delivery from "../images/delivery.svg";
-import car from "../images/car.svg";
+import ImageChip from "../assets/chip.png";
+import delivery from "../assets/delivery.svg";
+import car from "../assets/car.svg";
+import visaLogo from "../assets/visa-logo.png";
+import masterCardLogo from "../assets/mastercard-logo.png";
 import axios from "axios"; // Si prefieres axios en lugar de fetch
 
 // Funciones de validación para VISA y MasterCard
@@ -187,9 +189,9 @@ export const CreditCardModal = ({
       setTimeout(() => {
         setShowInfoDelivery(false);
         closeModal();
+        onPagoExitoso();
       }, 4000);
       // closeModal();
-      onPagoExitoso();
       // alert("Pago realizado con éxito");
       // closeModal(); // Cierra el modal después de un pago exitoso
     } else {
@@ -429,9 +431,6 @@ export const CreditCardModal = ({
           {console.log(showInfoDelivery)}
           {showInfoDelivery && (
             <section className="modal infoDelivery">
-              <button className="close-btn" onClick={handleCloseModal}>
-                ×
-              </button>
               <h1>Datos del pedido</h1>
               <p>Direccion: {infoDelivery.address}</p>
               <p>Fecha: {infoDelivery.deliveryDate}</p>
@@ -625,10 +624,20 @@ export const CreditCardModal = ({
             )}
 
             {/* Logotipo de la tarjeta debajo de los inputs */}
-            {cardType && (
+            {cardType === "VISA" && (
               <div className="card-type">
                 <img
-                  src={`src/images/${cardType.toLowerCase()}-logo.png`} // Logotipo de tarjeta (ajusta la ruta según tu estructura)
+                  src={visaLogo} // Logotipo de tarjeta (ajusta la ruta según tu estructura)
+                  alt={cardType}
+                  width="40"
+                />
+              </div>
+            )}
+
+            {cardType === "MasterCard" && (
+              <div className="card-type">
+                <img
+                  src={masterCardLogo} // Logotipo de tarjeta (ajusta la ruta según tu estructura)
                   alt={cardType}
                   width="40"
                 />
